@@ -1,0 +1,122 @@
+class Solution {
+    public int[] maximizeXor(int[] nums, int[][] queries) {
+        // Array to store the results of each query
+        int[] ans = new int[queries.length];
+
+        // Vector to store offline queries
+        ArrayList<Pair<Integer, Pair<Integer, Integer>>> offlineQueries = new ArrayList<>();
+        
+        // Sort the array of numbers to facilitate efficient querying
+        Arrays.sort(nums);
+
+        int index = 0;
+
+        // Convert queries to offline format and store them in a vector
+        for (int[] it : queries) {
+            // Each query is stored as a Pair of (maximum value, (original index, query index))
+            offlineQueries.add(new Pair<>(it[1], new Pair<>(it[0], index++)));
+        }
+
+        // Sort offline queries based on their maximum value
+        Collections.sort(offlineQueries, (a, b) -> a.getKey().compareTo(b.getKey()));
+
+        // Pointer to iterate through the array of numbers
+        int i = 0;
+
+        // Number of elements in the array
+        int n = nums.length;
+
+        // Create an instance of the Trie data structure
+        Trie trie = new Trie();
+
+        // Process each offline query
+        for (Pair<Integer, Pair<Integer, Integer>> it : offlineQueries) {
+            // Insert numbers into the trie until the current query's maximum value
+            while (i < n && nums[i] <= it.getKey()) {
+                trie.insert(nums[i]); // Insert the number into the Trie
+                i++; // Move to the next number
+            }
+
+            // If there are numbers inserted into the trie, find the maximum XOR value for the query range
+            if (i != 0)
+                ans[it.getValue().getValue()] = trie.getMax(it.getValue().getKey());
+            else
+                // If no numbers inserted, set result to -1
+                ans[it.getValue().getValue()] = -1;
+        }
+        // Return the results of all queries
+        return ans;
+    }
+}
+
+public class Trie {
+    class Node {
+        Node[] links = new Node[2]; // Links for binary digits (0 and 1)
+
+        boolean containsKey(int bits) {
+            return links[bits] != null; // Check if the link for the bit exists
+        }
+
+        Node get(int bits) {
+            return links[bits]; // Get the node corresponding to the bit
+        }
+
+        void put(int bits, Node node) {
+            links[bits] = node; // Set the link for the bit to the new node
+        }
+    }
+
+    Node root;
+
+    public Trie() {
+        root = new Node(); // Initialize the root of the Trie
+    }
+
+    public void insert(int num) {
+        Node node = root;
+        // Insert the binary representation of the number into the Trie
+        for (int i = 31; i >= 0; i--) {
+            int bit = (num >> i) & 1; // Extract the bit at position i
+            if (!node.containsKey(bit)) {
+                node.put(bit, new Node()); // Create a new node if it doesn't exist
+            }
+            node = node.get(bit); // Move to the next node
+        }
+    }
+
+    public int getMax(int num) {
+        Node node = root;
+        int max = 0;
+        // Calculate the maximum XOR value for the given number
+        for (int i = 31; i >= 0; i--) {
+            int bit = (num >> i) & 1; // Extract the bit at position i
+            // Try to find the opposite bit to maximize the XOR
+            if (node.containsKey(1 - bit)) {
+                max = max | (1 << i); // Set the corresponding bit in the max result
+                node = node.get(1 - bit); // Move to the opposite bit
+            } else {
+                node = node.get(bit); // Move to the same bit
+            }
+        }
+        return max; // Return the maximum XOR value found
+    }
+}
+
+// Simple Pair class to hold two values
+class Pair<K, V> {
+    private K key; // Key of the pair
+    private V value; // Value of the pair
+
+    public Pair(K key, V value) {
+        this.key = key; // Initialize the key
+        this.value = value; // Initialize the value
+    }
+
+    public K getKey() {
+        return key; // Return the key
+    }
+
+    public V getValue() {
+        return value; // Return the value
+    }
+}
