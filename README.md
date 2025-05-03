@@ -1,31 +1,9 @@
+# 📚 Data Structure Problem Solving
 **Data Structure Problem Solving** is a curated collection of solutions to various data structure and algorithm problems, primarily sourced from platforms like LeetCode. Each solution is implemented in Java, aiming to enhance problem-solving skills and understanding of core computer science concepts.
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/HridaySharma2002/Data-Structure_Problem_Solving/actions) [![License](https://img.shields.io/badge/license-GPL%203.0-blue.svg)](https://opensource.org/licenses/GPL-3.0) [![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/HridaySharma2002/Data-Structure_Problem_Solving/pulls)
 
-This repository serves as a personal archive and study guide for tackling common and complex problems related to:
-
-- Arrays and Strings
-- Linked Lists
-- Trees and Graphs
-- Stacks and Queues
-- Dynamic Programming
-- Greedy Algorithms
-- Backtracking
-- Sorting and Searching
-
-Each file is named to reflect the corresponding LeetCode problem number and title, facilitating easy navigation and reference.
-
-Data-Structure_Problem_Solving/
-├── LeetCode_02_Add_Two_Numbers.java
-├── LeetCode_100_Same_Tree.java
-├── LeetCode_101_Symmetric_Tree.java
-├── LeetCode_102_Binary_Tree_Level_Order_Traversal.java
-├── LeetCode_103_Binary_Tree_Zigzag_Level_Order_Traversal.java
-├── LeetCode_104_Maximum_Depth_of_Binary_Tree.java
-├── ...
-└── LICENSE
-
-*Note: The above is a partial list. The repository contains numerous other problem solutions.*
+## Installation
 
 To explore and run the solutions:
 
@@ -51,12 +29,16 @@ To explore and run the solutions:
    ```
    Replace XXX_Problem_Name with the specific problem file you wish to execute.
 
+## Usage/Examples
+
 ```java
 // Example usage for LeetCode_02_Add_Two_Numbers
 LeetCode_02_Add_Two_Numbers solution = new LeetCode_02_Add_Two_Numbers();
 int result = solution.addTwoNumbers(list1, list2);
 System.out.println(result);
 ```
+
+## Contributing
 
 Contributions are welcome! If you'd like to add solutions or improve existing ones:
 
@@ -81,14 +63,25 @@ Contributions are welcome! If you'd like to add solutions or improve existing on
 
 5. Open a pull request detailing your changes.
 
+## Features
+
 - Comprehensive solutions for LeetCode problems.
 - Each solution includes problem descriptions and comments for clarity.
 - Regular updates with new problems and solutions.
 
+## License
+
 This project is licensed under the GNU General Public License v3.0.
+
+## Acknowledgements
 
 LeetCode for providing a vast array of algorithmic challenges.
 
 The open-source community for continuous learning and inspiration.
 
 [Documentation](https://github.com/HridaySharma2002/Data-Structure_Problem_Solving/wiki) for additional resources and explanations.
+
+## Roadmap
+
+- Future improvements and additional problem solutions will be added.
+- Potential for translation into other programming languages.
